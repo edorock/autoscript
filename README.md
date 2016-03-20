@@ -5,7 +5,7 @@ Automatic Script Installer by KangArie
 ## Usage
 ### Centos 6 (OpenVZ VPS)
 ```
-wget https://raw.github.com/arieonline/autoscript/master/centos6.sh
+wget https://rawgit.com/edorock/autoscript/master/centos6.sh
 bash centos6.sh
 ```
 Tested on
@@ -15,7 +15,7 @@ Tested on
 
 ### Centos 6 (KVM VPS)
 ```
-wget https://raw.github.com/arieonline/autoscript/master/centos6-kvm.sh
+wget https://rawgit.com/edorock/autoscript/master/centos6-kvm.sh
 bash centos6-kvm.sh
 ```
 Tested on
@@ -25,7 +25,7 @@ Tested on
 
 ### Debian 6 32bit
 ```
-wget https://raw.github.com/arieonline/autoscript/master/debian6.sh
+wget https://rawgit.com/edorock/autoscript/master/debian6.sh
 bash debian6.sh
 ```
 Tested on
@@ -35,7 +35,7 @@ Tested on
 
 ### Debian 7 32bit
 ```
-wget https://raw.github.com/arieonline/autoscript/master/debian7.sh
+wget https://rawgit.com/edorock/autoscript/master/debian7.sh
 bash debian7.sh
 ```
 Tested on
