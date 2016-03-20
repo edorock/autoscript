@@ -83,27 +83,27 @@ echo "screenfetch" >> .bash_profile
 
 # install webserver
 cd
-wget -O /etc/nginx/nginx.conf "https://raw.github.com/arieonline/autoscript/master/conf/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://rawgit.com/edorock/autoscript/master/conf/nginx.conf"
 sed -i 's/www-data/nginx/g' /etc/nginx/nginx.conf
 mkdir -p /home/vps/public_html
 echo "<pre>Setup by KangArie | JualSSH.com | @arieonline | 7946F434</pre>" > /home/vps/public_html/index.html
 echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
 rm /etc/nginx/conf.d/*
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.github.com/arieonline/autoscript/master/conf/vps.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://rawgit.com/edorock/autoscript/master/conf/vps.conf"
 sed -i 's/apache/nginx/g' /etc/php-fpm.d/www.conf
 chmod -R +rx /home/vps
 service php-fpm restart
 service nginx restart
 
 # install openvpn
-wget -O /etc/openvpn/openvpn.tar "https://raw.github.com/arieonline/autoscript/master/conf/openvpn-debian.tar"
+wget -O /etc/openvpn/openvpn.tar "https://rawgit.com/edorock/autoscript/master/conf/openvpn-debian.tar"
 cd /etc/openvpn/
 tar xf openvpn.tar
-wget -O /etc/openvpn/1194.conf "https://raw.github.com/arieonline/autoscript/master/conf/1194-centos.conf"
+wget -O /etc/openvpn/1194.conf "https://rawgit.com/edorock/autoscript/master/conf/1194-centos.conf"
 if [ "$OS" == "x86_64" ]; then
-  wget -O /etc/openvpn/1194.conf "https://raw.github.com/arieonline/autoscript/master/conf/1194-centos64.conf"
+  wget -O /etc/openvpn/1194.conf "https://rawgit.com/edorock/autoscript/master/conf/1194-centos64.conf"
 fi
-wget -O /etc/iptables.up.rules "https://raw.github.com/arieonline/autoscript/master/conf/iptables.up.rules"
+wget -O /etc/iptables.up.rules "https://rawgit.com/edorock/autoscript/master/conf/iptables.up.rules"
 sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
 sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.d/rc.local
 MYIP=`curl -s ifconfig.me`;
@@ -119,7 +119,7 @@ cd
 
 # configure openvpn client config
 cd /etc/openvpn/
-wget -O /etc/openvpn/1194-client.ovpn "https://raw.github.com/arieonline/autoscript/master/conf/1194-client.conf"
+wget -O /etc/openvpn/1194-client.ovpn "https://rawgit.com/edorock/autoscript/master/conf/1194-client.conf"
 sed -i $MYIP2 /etc/openvpn/1194-client.ovpn;
 PASS=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 15 | head -n 1`;
 useradd -M -s /bin/false KangArie
@@ -131,9 +131,9 @@ cp client.tar /home/vps/public_html/
 cd
 
 # install badvpn
-wget -O /usr/bin/badvpn-udpgw "https://raw.github.com/arieonline/autoscript/master/conf/badvpn-udpgw"
+wget -O /usr/bin/badvpn-udpgw "https://rawgit.com/edorock/autoscript/master/conf/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
-  wget -O /usr/bin/badvpn-udpgw "https://raw.github.com/arieonline/autoscript/master/conf/badvpn-udpgw64"
+  wget -O /usr/bin/badvpn-udpgw "https://rawgit.com/edorock/autoscript/master/conf/badvpn-udpgw64"
 fi
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.d/rc.local
@@ -142,8 +142,8 @@ screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
 
 # install mrtg
 cd /etc/snmp/
-wget -O /etc/snmp/snmpd.conf "https://raw.github.com/arieonline/autoscript/master/conf/snmpd.conf"
-wget -O /root/mrtg-mem.sh "https://raw.github.com/arieonline/autoscript/master/conf/mrtg-mem.sh"
+wget -O /etc/snmp/snmpd.conf "https://rawgit.com/edorock/autoscript/master/conf/snmpd.conf"
+wget -O /root/mrtg-mem.sh "https://rawgit.com/edorock/autoscript/master/conf/mrtg-mem.sh"
 chmod +x /root/mrtg-mem.sh
 service snmpd restart
 chkconfig snmpd on
@@ -193,7 +193,7 @@ chkconfig fail2ban on
 
 # install squid
 yum -y install squid
-wget -O /etc/squid/squid.conf "https://raw.github.com/arieonline/autoscript/master/conf/squid-centos.conf"
+wget -O /etc/squid/squid.conf "https://rawgit.com/edorock/autoscript/master/conf/squid-centos.conf"
 sed -i $MYIP2 /etc/squid/squid.conf;
 service squid restart
 chkconfig squid on
@@ -208,18 +208,18 @@ chkconfig webmin on
 
 # pasang bmon
 if [ "$OS" == "x86_64" ]; then
-  wget -O /usr/bin/bmon "https://raw.github.com/arieonline/autoscript/master/conf/bmon64"
+  wget -O /usr/bin/bmon "https://rawgit.com/edorock/autoscript/master/conf/bmon64"
 else
-  wget -O /usr/bin/bmon "https://raw.github.com/arieonline/autoscript/master/conf/bmon"
+  wget -O /usr/bin/bmon "https://rawgit.com/edorock/autoscript/master/conf/bmon"
 fi
 chmod +x /usr/bin/bmon
 
 # downlaod script
 cd
 wget -O speedtest_cli.py "https://raw.github.com/sivel/speedtest-cli/master/speedtest_cli.py"
-wget -O bench-network.sh "https://raw.github.com/arieonline/autoscript/master/conf/bench-network.sh"
+wget -O bench-network.sh "https://rawgit.com/edorock/autoscript/master/conf/bench-network.sh"
 wget -O ps_mem.py "https://raw.github.com/pixelb/ps_mem/master/ps_mem.py"
-wget -O limit.sh "https://raw.github.com/arieonline/autoscript/master/conf/limit.sh"
+wget -O limit.sh "https://rawgit.com/edorock/autoscript/master/conf/limit.sh"
 curl http://script.jualssh.com/user-login.sh > user-login.sh
 curl http://script.jualssh.com/user-expire.sh > user-expire.sh
 curl http://script.jualssh.com/user-limit.sh > user-limit.sh
@@ -296,8 +296,8 @@ echo ""  | tee -a log-install.txt
 echo "Fitur lain"  | tee -a log-install.txt
 echo "----------"  | tee -a log-install.txt
 echo "Webmin   : http://$MYIP:10000/"  | tee -a log-install.txt
-echo "vnstat   : http://$MYIP/vnstat/"  | tee -a log-install.txt
-echo "MRTG     : http://$MYIP/mrtg/"  | tee -a log-install.txt
+echo "vnstat   : http://$MYIP:81/vnstat/"  | tee -a log-install.txt
+echo "MRTG     : http://$MYIP:81/mrtg/"  | tee -a log-install.txt
 echo "Timezone : Asia/Jakarta"  | tee -a log-install.txt
 echo "Fail2Ban : [on]"  | tee -a log-install.txt
 echo "IPv6     : [off]"  | tee -a log-install.txt
